@@ -1,0 +1,468 @@
+<!-- Jugglr: A Minimalistic Tumblr theme for EngineZombie -->
+<!DOCTYPE html>
+
+<html>
+<head>
+	
+	<!-- Standard META tags -->
+	<meta charset='utf-8'/>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+	<meta name='description' content='{MetaDescription}'/>
+	<!-- Default Colors -->
+	<meta name='color:Accent' content='#76a34c'/>
+
+	<title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+
+	<link rel='shortcut icon' href='{Favicon}'/>
+	<link rel='alternate' type='application/rss+xml' name='RSS' href='{RSS}'/>
+	
+	<style type='text/css' media='screen'>
+		
+		/* General Style
+		 * ---------------------------------------------------------------------------*/
+		body {
+			background: #fff;
+			color: #333;
+			font: normal 1em/1.5 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+			margin: 0;
+			padding: 3em 0 0 0;
+		}
+		
+		/* Links */
+		a, a:visited, a:active {
+			color:{color:Accent};
+			text-decoration: none;
+		}
+		
+		a:hover {
+			color: #333;
+		}
+		
+		/* Headers */
+		h1, h2, h3, h4, h5, h6 {
+			color: #111;
+			font-family: Georgia,serif;
+			font-weight: normal
+		}
+		
+		/* Paragraphs */
+		p {
+			font-family: Arial, Verdana;
+			font-size: 16px;
+			line-height: 160%;
+			margin:0 0 1.5em;
+		}
+		
+		/* Lists */
+		ul, ol {
+			margin: 0 0 1.5em;
+			padding-left: 2.5em;
+		}
+		
+		/* Stretch iFrames that embed content */
+		iframe {
+			width: 100%;
+		}
+		
+		/* Horizontal break */
+		hr {
+			height: 0px;
+			border-top: 1px solid #eee;
+			margin: 40px 0;
+		}
+		
+		/* Quotes */
+		blockquote {
+			border-left: 2px solid #333;
+			color: #333;
+			padding: 0 1em;
+			margin: 10px 0 10px 0;
+			padding-left: 15px;
+			border-left: 3px solid #eee;
+		}
+		
+		/* Code Highlighting */
+		code, code.hljs {
+			padding-bottom: 22px;
+			padding-left: 16px;
+			margin-bottom: 22px;
+		}
+		
+		/* Layout
+		 * ---------------------------------------------------------------------------*/
+		#container {
+			margin:0 auto;
+			max-width: 640px;
+			width: 80%;
+		}
+		
+		.sep {
+			color: #eee;
+		}
+
+		/* Header
+		 * ---------------------------------------------------------------------------*/
+		#header h1 {
+			font-family: Helvetica, Arial;
+			font-weight: 200;
+			text-align: left;
+			font-size: 22px;
+			margin: 0 0 4em 0;
+			padding: 0;
+		}
+
+		#header h1 a {
+			border: 0;
+			color: #111;
+			text-decoration:none;
+		}
+
+		#header h1 a:hover {
+			color: {color:Accent};
+		}
+
+		/* Footer
+		 * ---------------------------------------------------------------------------*/
+		#footer {
+			text-align: center;
+			padding: 0 0 20px 0;
+		}
+
+		#footer a {
+			color: #ccc;
+		}
+
+		#footer a:hover {
+			color: #888;
+		}
+
+		/* Posts
+		 * ---------------------------------------------------------------------------*/
+		#posts {
+			clear: left;
+		}
+		
+		/* General posts style */
+		.text, .link, .quote, .photo, .video, .audio, .chat, .photoset-post {
+			border-bottom: 1px solid #bbb;
+			margin-bottom: 6em;
+			text-align: justify;
+			text-justify: inter-word;
+			word-break: break-word;
+			hyphens: auto;
+		}
+
+		/* RTL posts */
+		.rtl, .hebrew {
+			direction: rtl;
+			unicode-bidi: bidi-override;
+		}
+		
+		/* Link posts description */
+		.link .link-description {
+			margin: 0 0 1.5em;
+		}
+
+		/* Quote text */
+		.quote .words {
+			color: #333;
+			margin: 10px 0 10px 0;
+			padding-left: 15px;
+			border-left: 2px solid #eee;
+		}
+
+		/* Quote source */
+		.quote .source {
+			color: #333;
+			font-style: italic;
+		}
+		
+		/* Captions */
+		.photo .caption, .audio .caption, .quote .source, .photoset-post .caption {
+			clear: right;
+			margin-bottom: 1.5em;
+			margin-top: 0.75em;
+			text-align: left;
+		}
+
+		/* Photos */
+		.photo a img {
+			border:0;
+			width: 100%;
+		}
+
+		/* Posts footer */
+		.post-footer {
+			list-style: none;
+			font-size: 0.857em;
+			margin: 3em 0;
+			padding: 0;
+			text-align: right;
+		}
+
+		.post-footer li {
+			display: inline;
+			margin-left: 1em;
+			padding: 0
+		}
+
+		/* Hide tags */
+		.tags ul {
+			display: none;
+		}
+
+		/* Pagination */
+		.pagination {
+			margin: 3em 0;
+		}
+
+		.pagination #pagecount {
+			color: #333;
+			margin: 0 1.5em;
+		}
+		
+		/* Custom CSS */
+		{CustomCSS}
+
+	</style>
+
+</head>
+
+<body>
+	<div id='container'>
+		
+		<!-- Header -->
+		<div id='header'>
+			<h1><a href='/'>{Title}</a></h1>
+		</div>
+		<!-- End Header -->
+		
+		<!-- Posts Container -->
+		<div id='posts'>
+		
+			<!-- Search Page -->
+			{block:SearchPage}
+			<div id='searchresultcount'>
+				{block:SearchResults}
+					<p>{lang:Your search for SearchQuery returned SearchResultCount results 2}</p>
+				{block:SearchResults}
+			
+				{block:NoSearchResults}
+					<p>{lang:No search results for SearchQuery 2}</p>
+				{block:NoSearchResults}
+			</div>
+			{/block:SearchPage}
+			
+			<!-- Single Post -->
+			{block:Posts}
+				
+				<!-- Text Post -->
+				{block:Text}
+				<div class='text {TagsAsClasses}'>
+					{block:Title}
+						<h2>{Title}</h2>
+					{/block:Title}
+					{Body}
+				{/block:Text}
+				<!-- End Text Post -->
+
+				<!-- Quote Post -->
+				{block:Quote}
+				<div class='quote {TagsAsClasses}'>
+					<blockquote class='words'>{Quote}</blockquote>
+					{block:Source}<div class='source'>— {Source}</div>{/block:Source}
+				{/block:Quote}
+				<!-- End Quote Post -->
+
+				<!-- Link Post -->
+				{block:Link}
+				<div class='link {TagsAsClasses}'>
+					<h2><a href='{URL}' {Target}>{Name}</a></h2>
+					{block:Description}
+					<div class='link-description'>
+						{Description}
+					</div>
+					{/block:Description}
+				{/block:Link}
+				<!-- End Link Post -->
+				
+				<!-- Video Post -->
+				{block:Video}
+				<div class='video {TagsAsClasses}'>
+					{block:Caption}<div class='caption'>{Caption}</div>{/block:Caption}
+					{VideoEmbed-700}
+				{/block:Video}
+				<!-- End Video Post -->
+
+				<!-- Audio Post -->
+				{block:Audio}
+				<div class='audio {TagsAsClasses}'>
+					{AudioPlayerBlack}
+					{block:Caption}<div class='caption'>{Caption}</div>{/block:Caption}
+				{/block:Audio}
+				<!-- End Audio Post -->
+
+				<!-- Photo Post -->
+				{block:Photo}
+				<div class='photo {TagsAsClasses}'>
+					{LinkOpenTag}
+						<img src='{PhotoURL-HighRes}' alt='{PhotoAlt}'/>
+					{LinkCloseTag}
+					{block:Caption}
+						<div class='caption'>{Caption}</div>
+					{/block:Caption}
+				{/block:Photo}
+				<!-- End Photo Post -->
+
+
+				<!-- Photoset Post -->
+				{block:Photoset}
+				<div class='photoset-post {TagsAsClasses}'>
+					{Photoset-700}
+					{block:Caption}
+						<div class='caption'>{Caption}</div>
+					{/block:Caption}
+				{/block:Photoset}
+				<!-- End Photoset Post -->
+				
+				
+				<!-- Chat Post -->
+				{block:Chat}
+				<div class='chat {TagsAsClasses}'>
+					{block:Title}<h2>{Title}</h2>{/block:Title}
+					<ul class='convo'>
+						{block:Lines}
+						<li class='{Alt}'>
+							<span class='person'>{block:Label}{Label}{/block:Label}</span>
+							<span class='line'>{Line}</span>
+						</li>
+						{/block:Lines}
+					</ul>
+				{/block:Chat}
+				<!-- End Chat Post -->
+				
+				<!-- Post Footer -->
+				<ul class='post-footer'>
+					
+					<!-- Reblogged post note -->
+					{block:RebloggedFrom}
+						<li class='reblog'>
+							{lang:Reblogged from ReblogParentTitle 2}
+						</li>
+					{/block:RebloggedFrom}
+
+					<!-- Tags (hidden) -->
+					{block:HasTags}
+						<li class='tags'>
+							<ul>{block:Tags}
+								<li><a href='{TagURL}'>{Tag}</a></li>
+							{/block:Tags}
+							</ul>
+						</li>
+					{/block:HasTags}
+					
+					<!-- Post date -->
+					{block:Date}
+
+						<li class='date'>
+						<h3>
+							<a href='{Permalink}' class='permalink'>
+								({Month} {DayOfMonth}, {Year}{/block:Date})
+							</a>
+						</h3>
+
+						<!-- Post Notes -->
+						{block:IfShowNotes}
+							{block:NoteCount}
+							<h3>{NoteCountWithLabel}</h3>
+							{/block:NoteCount}
+						{/block:IfShowNotes}
+						</li>
+
+					{/block:Date}
+				</ul>
+				<!-- End Post Footer -->
+
+				<!-- Close Single Post Section -->
+			</div>
+			{/block:Posts}
+			<!-- End Single Post -->
+
+			<!-- Post Permalink -->
+			{block:Permalink}
+				{block:IfShowNotes}
+					{block:PostNotes}
+						<h4>{lang:Notes}</h4>
+						{PostNotes}
+				{block:PostNotes}
+				{/block:IfShowNotes}
+			<!-- End Post Permalink -->
+		
+			<!-- Disqus Comments -->
+			{block:IfDisqusShortname}
+				<div id='disqus_thread'></div>
+				<script type='text/javascript' src='https://disqus.com/forums/{text:Disqus Shortname}/embed.js'></script>
+				<noscript>
+					<a href='https://{text:Disqus Shortname}.disqus.com/?url=ref'>
+						{lang:View the discussion thread}
+					</a>
+				</noscript>
+				{/block:IfDisqusShortname}
+				{/block:Permalink}
+			<!-- End Disqus Comments -->
+
+		</div>
+		<!-- End Posts Container -->
+		
+		<!-- Pagination -->
+		{block:Pagination}
+		<div class='pagination'>
+			{block:NextPage}
+				<a href='{NextPage}'>{lang:Older entries}</a>
+			{/block:NextPage}
+			<span id='pagecount'>
+				({CurrentPage}/{TotalPages})
+			</span>
+			{block:PreviousPage}
+				<a href='{PreviousPage}'>{lang:Newer Entries}</a>
+			{/block:PreviousPage}
+		</div>
+		{/block:Pagination}
+		<!-- End Pagination -->
+		
+		<!-- Single Post Pagination -->
+		{block:PermalinkPagination}
+		<div class='pagination'>
+			{block:PreviousPost}
+					<a href='{PreviousPost}'>{lang:Previous post}</a>
+			{/block:PreviousPost}
+			{block:PreviousPost}
+			{block:NextPost}
+			<span class='sep'>/</span>
+			{/block:NextPost}
+			{/block:PreviousPost}
+			{block:NextPost}
+				<a href='{NextPost}'>{lang:Next post}</a>
+			{/block:NextPost}
+		</div>
+		{/block:PermalinkPagination}
+		<!-- End Single Post Pagination -->
+		
+		<!-- Footer -->
+		<div id='footer'>
+			<a href='http://enginezombie.com'>Engine Zombie</a>
+		</div>
+		<!-- End Footer -->
+		
+	</div>
+	<!-- End Container -->
+	
+	<!-- Scripts -->
+	<!-- HighlightJS -->
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai_sublime.min.css'>
+	<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js'></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<!-- End Scripts -->
+
+</body>
+</html>
