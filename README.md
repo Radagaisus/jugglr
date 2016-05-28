@@ -19,12 +19,9 @@ A minimalistic Tumblr theme for my blogs.
 
 - RTL Support: Tag posts as `#hebrew` or `#rtl`.
 
-- Code Highlighting: Done automatically by [HighlightJS](https://highlightjs.org/).
+- Code Highlighting: Done automatically with [HighlightJS](https://highlightjs.org/).
 
 - Formatting poetry: Add `<br>`s like a pleb.
-
-
----
 
 
 ### License
