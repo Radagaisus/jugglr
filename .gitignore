@@ -1,0 +1,31 @@
+# Git Ignore
+# --------------------------------------------------------------------------------
+# All files mentioned here are ignored by git's version control.
+# .gitignore documentation: http://git-scm.com/docs/gitignore
+# 
+
+
+# System created cached copies
+# --------------------------------------------------------------------------------------
+
+# Cached copies in UNIX systems usually have this suffix: `*.html~`, `*.js~`, etc.
+*~
+
+
+# Packages and zipped files
+# --------------------------------------------------------------------------------------
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+
+# OS generated files
+# ----------------------------------------------------------------------------------------
+.DS_Store
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+
