@@ -4,7 +4,7 @@ A minimalistic Tumblr theme for my blogs.
 
 ###### [Less Ambitious](https://lessambitious.tumblr.com)
 
-![Less Ambitious](http://i.imgur.com/SVoWqO1.png)
+![Less Ambitious](http://i.imgur.com/XmyuSoq.png)
 
 ---
 
